@@ -1,0 +1,30 @@
+# Core ML
+torch
+torchvision
+scikit-learn
+numpy
+pandas
+
+# PQC Cryptography
+liboqs-python
+pqcrypto
+cryptography
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Docker management
+docker
+
+# System monitoring
+psutil
+gputil
+py3nvml
+
+# Utilities
+pyyaml
+tqdm
+tabulate
+scipy

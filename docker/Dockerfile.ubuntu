@@ -1,0 +1,7 @@
+FROM ubuntu:22.04
+RUN apt-get update && apt-get install -y python3 python3-pip nginx curl
+COPY node_entrypoint.py /app/
+WORKDIR /app
+RUN pip3 install flask requests psutil
+EXPOSE 80 5000
+CMD ["python3", "node_entrypoint.py", "--role", "webserver"]

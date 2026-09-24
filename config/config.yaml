@@ -1,0 +1,203 @@
+# ============================================================
+# MASTER CONFIGURATION FILE
+# ============================================================
+
+# --- Dataset ---
+dataset:
+  name: "CICIDS2018"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  # URL will be set in download script
+  test_split: 0.2
+  val_split: 0.1
+  random_seed: 42
+  # Features to drop (non-numeric identifiers)
+  drop_columns: ["Timestamp", "Dst Port"]
+
+# --- Preprocessing ---
+preprocessing:
+  handle_inf: true          # Replace Inf with NaN, then fill
+  handle_nan: "median"      # "median", "mean", or "drop"
+  normalization: "minmax"   # "minmax", "standard", or "robust"
+  feature_selection:
+    method: "variance"      # Remove zero/near-zero variance features
+    threshold: 0.0001
+
+# --- Autoencoder (Anomaly Detection) ---
+autoencoder:
+  input_dim: 77           # Set dynamically after preprocessing
+  hidden_dims: [128, 64, 32, 16]  # Encoder layers (decoder mirrors)
+  latent_dim: 8
+  dropout: 0.2
+  activation: "relu"
+  learning_rate: 0.001
+  batch_size: 256
+  epochs: 50
+  early_stopping_patience: 5
+  anomaly_threshold_percentile: 95  # Top 5% reconstruction error = anomaly
+  device: "cuda"            # "cuda" or "cpu"
+
+# --- LSTM (Threat Prediction) ---
+lstm:
+  input_dim: 77           # Set dynamically
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.2
+  sequence_length: 10       # Number of time steps per window
+  prediction_horizon: 1     # Predict 1 step ahead
+  learning_rate: 0.001
+  batch_size: 128
+  epochs: 30
+  early_stopping_patience: 5
+  device: "cuda"
+
+# --- CNN Baseline ---
+cnn_baseline:
+  filters: [64, 128, 64]
+  kernel_size: 3
+  dropout: 0.3
+  learning_rate: 0.001
+  batch_size: 256
+  epochs: 30
+  device: "cuda"
+
+# --- Classical Baselines ---
+classical_baselines:
+  isolation_forest:
+    n_estimators: 100
+    contamination: 0.1
+    random_state: 42
+  one_class_svm:
+    kernel: "rbf"
+    gamma: "scale"
+    nu: 0.1
+
+# --- Evaluation ---
+evaluation:
+  k_folds: 5               # 5-fold cross-validation
+  num_trials: 3             # Repeat latency experiments 3 times
+  confidence_level: 0.95    # For confidence intervals
+
+# --- Adaptive Retraining ---
+adaptive:
+  window_size: 5000         # Samples in sliding window
+  retrain_interval: 2000    # Retrain every N new samples
+  min_samples_for_retrain: 1000
+  max_retrain_epochs: 10    # Fewer epochs for incremental retraining
+  drift_detection_threshold: 0.05  # F1 drop threshold to trigger retrain
+
+# --- Response Engine ---
+response:
+  severity_thresholds:
+    low: 0.3                # anomaly_score < 0.3 → log only
+    medium: 0.6             # 0.3–0.6 → throttle traffic
+    high: 0.8               # 0.6–0.8 → isolate container
+    critical: 0.95          # > 0.95 → isolate + alert + log to blockchain
+  action_cooldown_seconds: 5
+
+# --- PQC Cryptography ---
+pqc:
+  kem_algorithm: "Kyber768"
+  sig_algorithm: "Dilithium3"
+  # Fallback if liboqs unavailable
+  fallback_kem: "pqcrypto"  # Use pqcrypto package
+  fallback_sig: "pqcrypto"
+
+# --- AES Data-at-Rest ---
+aes:
+  algorithm: "AES-256-GCM"
+  key_derivation: "PBKDF2"
+  iterations: 100000
+
+# --- Classical Crypto Baselines ---
+classical_crypto:
+  ecdh_curve: "SECP256R1"
+  rsa_key_size: 2048
+
+# --- Blockchain ---
+blockchain:
+  block_size: 10            # Max transactions per block
+  difficulty: 2             # Leading zeros for proof-of-work (light)
+  consensus: "PBFT"         # Simplified PBFT
+  min_validators: 3
+  merkle_hash: "sha3_256"
+
+# --- Trust Management ---
+trust:
+  initial_score: 0.5
+  min_score: 0.0
+  max_score: 1.0
+  anomaly_penalty: 0.1      # Deduct per anomaly detected
+  valid_signature_reward: 0.02
+  uptime_reward_per_minute: 0.001
+  recovery_rate: 0.05       # Trust recovery per clean interval
+  isolation_threshold: 0.2  # Below this → node is isolated
+
+# --- Docker Testbed ---
+docker_testbed:
+  max_nodes: 30             # Capped at 30 for 16GB RAM laptop
+  scalability_steps: [5, 10, 15, 20, 25, 30]
+  node_types:
+    - name: "web-server"
+      image: "ubuntu"
+      dockerfile: "docker/Dockerfile.ubuntu"
+      cpus: "0.5"
+      memory: "256m"
+      service: "nginx"
+    - name: "api-gateway"
+      image: "alpine"
+      dockerfile: "docker/Dockerfile.alpine"
+      cpus: "0.3"
+      memory: "128m"
+      service: "flask-api"
+    - name: "database"
+      image: "debian"
+      dockerfile: "docker/Dockerfile.debian"
+      cpus: "0.5"
+      memory: "512m"
+      service: "sqlite"
+
+# --- Synthetic Workloads ---
+workloads:
+  # Based on published cloud traffic models (cite: Reiss et al., Google cluster traces)
+  normal_traffic:
+    requests_per_second: [10, 50, 100, 200]
+    payload_size_bytes: [64, 256, 1024, 4096]
+    distribution: "poisson"
+  burst_traffic:
+    multiplier: 5            # 5x normal rate
+    duration_seconds: 30
+  patterns:
+    - "steady_state"         # Constant load
+    - "diurnal"              # Day/night cycle pattern
+    - "bursty"               # Random bursts
+    - "ramp_up"              # Gradually increasing load
+
+# --- Attack Simulation ---
+attacks:
+  types:
+    - name: "ddos_flood"
+      tool: "hping3"         # Or Python socket flood
+      intensity: "high"
+      duration_seconds: 60
+    - name: "port_scan"
+      tool: "nmap"           # Or Python port scanner
+      target_ports: "1-1024"
+    - name: "mitm"
+      method: "arp_spoof"    # Simulated within Docker network
+      duration_seconds: 30
+    - name: "brute_force"
+      method: "repeated_auth_attempts"
+      attempts: 1000
+    - name: "data_exfiltration"
+      method: "large_outbound_transfer"
+      size_mb: 100
+
+# --- Visualization ---
+visualization:
+  output_dir: "results/figures"
+  format: "png"              # "png" or "pdf"
+  dpi: 300
+  style: "whitegrid"
+  figsize: [10, 6]
+  color_palette: "Set2"

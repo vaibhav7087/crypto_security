@@ -1,0 +1,11 @@
+Metric,PQC,Classical,Difference,Ratio (PQC/Classical)
+kem_keygen_ms,0.0,0,0.0,0
+public_key_size,1184.0,0,1184.0,0
+secret_key_size,2400.0,0,2400.0,0
+kem_encaps_ms,0.0,0,0.0,0
+ciphertext_size,1088.0,0,1088.0,0
+kem_decaps_ms,0.0,0,0.0,0
+sig_keygen_ms,0.0,0,0.0,0
+sig_sign_ms,0.0,0,0.0,0
+signature_size,3293.0,0,3293.0,0
+sig_verify_ms,0.0,0,0.0,0

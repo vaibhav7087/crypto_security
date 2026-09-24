@@ -1,0 +1,6 @@
+{
+    "Benign": 0,
+    "BruteForce": 1,
+    "DDoS": 2,
+    "PortScan": 3
+}

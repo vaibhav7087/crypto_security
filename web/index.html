@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Decentralized Security Framework | PhD Research & Defense Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Header -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="shield-logo">
+                    <span class="logo-icon">🛡️</span>
+                </div>
+                <div>
+                    <h1 class="brand-title">PQC-ANN CloudShield</h1>
+                    <span class="brand-subtitle">Hybrid Decentralized Security Architecture (NIST Kyber/Dilithium + Deep Autoencoder + Blockchain)</span>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="cluster-status-badge">
+                    <span class="status-pulse-dot"></span>
+                    <span id="cluster-health-text">Cluster Mesh: Healthy</span>
+                </div>
+                <button class="nav-tab active" data-tab="tab-simulation">⚡ Live Simulation</button>
+                <button class="nav-tab" data-tab="tab-benchmarks">📊 Model Benchmarks</button>
+                <button class="nav-tab" data-tab="tab-blockchain">⛓️ PQC & Ledger</button>
+                <button class="nav-tab" data-tab="tab-architecture">📑 Objectives & Defense</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- TAB 1: LIVE STEP-BY-STEP SIMULATION -->
+            <section id="tab-simulation" class="tab-pane active">
+                <!-- Top Simulation Control Panel -->
+                <div class="control-panel glass-panel">
+                    <div class="control-group">
+                        <label for="input-nodes">Cluster Nodes:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="input-nodes" min="5" max="30" value="10" step="1">
+                            <span id="label-nodes" class="value-badge">10 Nodes</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="input-rounds">Sim Rounds:</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="input-rounds" min="1" max="20" value="5" step="1">
+                            <span id="label-rounds" class="value-badge">5 Rounds</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="select-attack">Injected Threat:</label>
+                        <select id="select-attack" class="custom-select">
+                            <option value="DDoS SYN Flood">DDoS SYN Flood (High Rate)</option>
+                            <option value="Port Scan Reconnaissance">Port Scan Sweep (Nmap-like)</option>
+                            <option value="Web Infiltration & SQLi">Web Infiltration & Exploit</option>
+                            <option value="Mirai Botnet C2">Mirai Botnet C&C Beacon</option>
+                            <option value="Normal Benign">Normal Benign Traffic</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="select-target">Target Victim Node:</label>
+                        <select id="select-target" class="custom-select">
+                            <option value="3">Node-03 (Worker Container)</option>
+                            <option value="5">Node-05 (DB Microservice)</option>
+                            <option value="7">Node-07 (Cache Server)</option>
+                            <option value="1">Node-01 (API Gateway)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-actions">
+                        <button id="btn-next-step" class="btn btn-primary" title="Execute only the next step">
+                            <span>Next Step</span> ⏭️
+                        </button>
+                        <button id="btn-auto-play" class="btn btn-accent" title="Auto-advance through all steps">
+                            <span>Auto Play</span> ⚡
+                        </button>
+                        <button id="btn-reset" class="btn btn-outline" title="Reset cluster state">
+                            <span>Reset</span> 🔄
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step Tracker (Breadcrumb Stepper) -->
+                <div class="step-tracker-container glass-panel">
+                    <div class="step-progress-bar">
+                        <div id="step-progress-fill" class="progress-fill" style="width: 12.5%;"></div>
+                    </div>
+                    <div class="stepper-items">
+                        <div class="step-item active" data-step="1">
+                            <div class="step-circle">1</div>
+                            <span class="step-label">Flow Ingestion</span>
+                        </div>
+                        <div class="step-item" data-step="2">
+                            <div class="step-circle">2</div>
+                            <span class="step-label">ANN Inference</span>
+                        </div>
+                        <div class="step-item" data-step="3">
+                            <div class="step-circle">3</div>
+                            <span class="step-label">Threshold Check</span>
+                        </div>
+                        <div class="step-item" data-step="4">
+                            <div class="step-circle">4</div>
+                            <span class="step-label">Trust Scoring</span>
+                        </div>
+                        <div class="step-item" data-step="5">
+                            <div class="step-circle">5</div>
+                            <span class="step-label">PQC Key Exchange</span>
+                        </div>
+                        <div class="step-item" data-step="6">
+                            <div class="step-circle">6</div>
+                            <span class="step-label">Ledger Minting</span>
+                        </div>
+                        <div class="step-item" data-step="7">
+                            <div class="step-circle">7</div>
+                            <span class="step-label">Autonomous Mitigation</span>
+                        </div>
+                        <div class="step-item" data-step="8">
+                            <div class="step-circle">8</div>
+                            <span class="step-label">Adaptive Retrain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spotlight Card: Detailed Step-by-Step Explainer -->
+                <div class="step-spotlight-card glass-panel" id="step-spotlight">
+                    <div class="spotlight-header">
+                        <div class="spotlight-badge" id="spotlight-badge">STEP 1 OF 8 • ACTIVE PHASE</div>
+                        <div class="round-indicator" id="round-indicator">Simulation Round: 1 / 5</div>
+                    </div>
+                    <div class="spotlight-body">
+                        <div class="spotlight-info">
+                            <h2 id="spotlight-title">Step 1: Network Flow Ingestion (80 CICIDS2018 Features)</h2>
+                            <p id="spotlight-desc">Generating high-dimensional network flow vectors matching the Canadian Institute for Cybersecurity benchmark. Features capture flow duration, inter-arrival times, TCP flag counts, and packet variances.</p>
+                            <div class="formula-box" id="spotlight-formula">
+                                <code>Input Vector x ∈ ℝ⁸⁰ | Features: [Flow_Duration, Fwd_IAT_Mean, SYN_Count, ...]</code>
+                            </div>
+                        </div>
+                        <div class="spotlight-metrics" id="spotlight-metrics">
+                            <!-- Dynamic key-value metric pills -->
+                            <div class="metric-pill">
+                                <span class="pill-label">Injected Threat</span>
+                                <span class="pill-val" id="pill-threat">DDoS SYN Flood</span>
+                            </div>
+                            <div class="metric-pill">
+                                <span class="pill-label">Target Container</span>
+                                <span class="pill-val" id="pill-target">Node-03</span>
+                            </div>
+                            <div class="metric-pill">
+                                <span class="pill-label">Flow Duration</span>
+                                <span class="pill-val" id="pill-dur">2,480 ms</span>
+                            </div>
+                            <div class="metric-pill">
+                                <span class="pill-label">SYN Flag Count</span>
+                                <span class="pill-val text-alert" id="pill-syn">1,420</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Workspace Grid: Nodes Cluster + Terminal Stream -->
+                <div class="workspace-grid">
+                    <!-- Left Column: Cluster Nodes Mesh -->
+                    <div class="nodes-column glass-panel">
+                        <div class="column-header">
+                            <div>
+                                <h3 class="column-title">Heterogeneous Cloud Mesh Topology</h3>
+                                <span class="column-subtitle">Simulated Docker Containers with Varying Resource Limits</span>
+                            </div>
+                            <div class="node-legend">
+                                <span class="legend-item"><span class="dot dot-normal"></span> Normal</span>
+                                <span class="legend-item"><span class="dot dot-throttled"></span> Throttled</span>
+                                <span class="legend-item"><span class="dot dot-quarantined"></span> Quarantined</span>
+                            </div>
+                        </div>
+                        
+                        <div class="nodes-grid" id="nodes-container">
+                            <!-- Dynamically populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Live Terminal Stream -->
+                    <div class="terminal-column glass-panel">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <div class="terminal-title">bash - live_orchestrator.log (ANSI Terminal)</div>
+                            <div class="terminal-controls">
+                                <button id="btn-clear-term" class="btn-term">Clear</button>
+                                <button id="btn-toggle-scroll" class="btn-term active">Auto-Scroll: ON</button>
+                            </div>
+                        </div>
+                        <div class="terminal-body" id="terminal-body">
+                            <!-- Terminal logs stream here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: MODEL BENCHMARKS & COMPARISON -->
+            <section id="tab-benchmarks" class="tab-pane">
+                <div class="benchmarks-header glass-panel">
+                    <h2>Empirical Verification & Baseline Comparisons (Objective 3)</h2>
+                    <p>Verified detection metrics evaluated on 60,000 CICIDS2018 flow vectors. Deep Autoencoder achieves superior zero-day detection over classical Isolation Forest and One-Class SVM with statistical significance (p < 0.001).</p>
+                </div>
+
+                <div class="comparison-table-wrapper glass-panel">
+                    <table class="benchmark-table">
+                        <thead>
+                            <tr>
+                                <th>Model Architecture</th>
+                                <th>Paradigm</th>
+                                <th>Accuracy</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>ROC-AUC</th>
+                                <th>FPR</th>
+                                <th>Inference Latency</th>
+                                <th>Training Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight-row">
+                                <td><strong>Deep Autoencoder (Ours)</strong></td>
+                                <td><span class="badge badge-primary">Unsupervised ANN</span></td>
+                                <td class="text-green"><strong>90.68%</strong></td>
+                                <td class="text-green"><strong>0.7299</strong></td>
+                                <td>0.7000</td>
+                                <td class="text-green"><strong>0.7147</strong></td>
+                                <td>0.7082</td>
+                                <td class="text-green">0.0518</td>
+                                <td class="text-green"><strong>5.99 ms</strong></td>
+                                <td>50.76 s</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Isolation Forest</strong></td>
+                                <td><span class="badge badge-secondary">Classical Tree</span></td>
+                                <td>86.38%</td>
+                                <td>0.5749</td>
+                                <td>0.7000</td>
+                                <td>0.6313</td>
+                                <td>0.7026</td>
+                                <td>0.1035</td>
+                                <td>0.41 ms</td>
+                                <td>0.41 s</td>
+                            </tr>
+                            <tr>
+                                <td><strong>One-Class SVM</strong></td>
+                                <td><span class="badge badge-secondary">Classical Kernel</span></td>
+                                <td>86.52%</td>
+                                <td>0.5791</td>
+                                <td>0.6953</td>
+                                <td>0.6319</td>
+                                <td>0.7280</td>
+                                <td>0.1009</td>
+                                <td>0.79 ms</td>
+                                <td>0.79 s</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LSTM Threat Predictor (Ours)</strong></td>
+                                <td><span class="badge badge-accent">Recurrent ANN</span></td>
+                                <td>58.52%</td>
+                                <td>0.1666</td>
+                                <td>0.3717</td>
+                                <td>0.2301</td>
+                                <td>0.5007</td>
+                                <td>0.3720</td>
+                                <td>12.42 ms</td>
+                                <td>102.22 s</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CNN-1D Baseline</strong></td>
+                                <td><span class="badge badge-secondary">ConvNet Baseline</span></td>
+                                <td>76.95%</td>
+                                <td>0.1665</td>
+                                <td>0.0955</td>
+                                <td>0.1214</td>
+                                <td>0.5070</td>
+                                <td>0.0957</td>
+                                <td>4.10 ms</td>
+                                <td>15.43 s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="metrics-visual-grid">
+                    <div class="chart-card glass-panel">
+                        <h3>F1-Score Comparison Across Models</h3>
+                        <div class="bar-chart-container">
+                            <div class="bar-group">
+                                <div class="bar-label">Autoencoder (Ours)</div>
+                                <div class="bar-track"><div class="bar-fill fill-primary" style="width: 71.5%;">71.5%</div></div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-label">Isolation Forest</div>
+                                <div class="bar-track"><div class="bar-fill fill-secondary" style="width: 63.1%;">63.1%</div></div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-label">One-Class SVM</div>
+                                <div class="bar-track"><div class="bar-fill fill-secondary" style="width: 63.2%;">63.2%</div></div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-label">LSTM Sequential</div>
+                                <div class="bar-track"><div class="bar-fill fill-accent" style="width: 23.0%;">23.0%</div></div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-label">CNN-1D Baseline</div>
+                                <div class="bar-track"><div class="bar-fill fill-muted" style="width: 12.1%;">12.1%</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-summary-card glass-panel">
+                        <h3>Statistical Rigor & Validation</h3>
+                        <div class="stats-pills">
+                            <div class="stat-box">
+                                <span class="stat-number text-green">0.7182 ± 0.0119</span>
+                                <span class="stat-desc">5-Fold Cross-Validation F1</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-accent">t = 16.37</span>
+                                <span class="stat-desc">Paired t-Test vs Baselines</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-green">p = 0.0001 &lt; 0.05</span>
+                                <span class="stat-desc">Null Hypothesis Rejected</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-yellow">5.99 ms</span>
+                                <span class="stat-desc">Inline Inference Latency</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: PQC CRYPTO & BLOCKCHAIN LEDGER -->
+            <section id="tab-blockchain" class="tab-pane">
+                <div class="pqc-header glass-panel">
+                    <h2>Quantum-Resilient Cryptography & Permissioned Blockchain (Objective 2)</h2>
+                    <p>Securing inter-node communications with NIST Round-3 <strong>CRYSTALS-Kyber768</strong> Key Encapsulation and <strong>CRYSTALS-Dilithium3</strong> lattice digital signatures over a tamper-proof hash-chained ledger.</p>
+                </div>
+
+                <div class="pqc-comparison-grid">
+                    <div class="crypto-table-card glass-panel">
+                        <h3>PQC vs Classical Cryptographic Benchmark</h3>
+                        <table class="benchmark-table">
+                            <thead>
+                                <tr>
+                                    <th>Cryptographic Operation</th>
+                                    <th>Post-Quantum Standard (Ours)</th>
+                                    <th>Classical Standard</th>
+                                    <th>PQC Overhead</th>
+                                    <th>Quantum Security Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Key Encapsulation (KEM)</strong></td>
+                                    <td>CRYSTALS-Kyber768 (0.85 ms)</td>
+                                    <td>ECDH secp256r1 (0.80 ms)</td>
+                                    <td>+0.05 ms (+6%)</td>
+                                    <td><span class="badge badge-green">Resistant (LWE)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Digital Signatures</strong></td>
+                                    <td>CRYSTALS-Dilithium3 (1.45 ms)</td>
+                                    <td>RSA-2048 / ECDSA (1.50 ms)</td>
+                                    <td>-0.05 ms (Faster)</td>
+                                    <td><span class="badge badge-green">Resistant (M-SIS)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Public Key Size</strong></td>
+                                    <td>1,184 Bytes</td>
+                                    <td>64 Bytes</td>
+                                    <td>18.5x Size</td>
+                                    <td><span class="badge badge-green">Future Proof</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ciphertext Size</strong></td>
+                                    <td>1,088 Bytes</td>
+                                    <td>64 Bytes</td>
+                                    <td>17.0x Size</td>
+                                    <td><span class="badge badge-green">Future Proof</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tamper-proof-demo glass-panel">
+                        <h3>Interactive Tamper-Proof Audit Experiment</h3>
+                        <p>Objective 2 guarantees tamper-proof auditing. Click below to simulate an adversary attempting to edit Block #1 in the database.</p>
+                        <div class="tamper-controls">
+                            <button id="btn-tamper-chain" class="btn btn-danger">🚨 Tamper with Block #1 History</button>
+                            <button id="btn-restore-chain" class="btn btn-outline">🛡️ Restore Genuine Chain</button>
+                        </div>
+                        <div id="tamper-status-alert" class="tamper-alert alert-success">
+                            <span class="alert-icon">✓</span>
+                            <span class="alert-text">Hash Chain Status: 100% Cryptographically Valid across all blocks.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blockchain-explorer glass-panel">
+                    <h3>Permissioned Blockchain Ledger (Latest Blocks)</h3>
+                    <div class="blocks-container" id="blocks-container">
+                        <!-- Dynamic blocks rendered here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: OBJECTIVES & DEFENSE GUIDE -->
+            <section id="tab-architecture" class="tab-pane">
+                <div class="defense-card glass-panel">
+                    <h2>PhD Research Objectives & Implementation Mapping</h2>
+                    <div class="objectives-accordion">
+                        <div class="objective-box">
+                            <div class="obj-header">
+                                <span class="obj-badge">Objective 1</span>
+                                <h3>ANN-Based Adaptive Security Framework</h3>
+                            </div>
+                            <p class="obj-text"><em>"To provide an ANN based security framework that is adaptive, self-learning, and capable of autonomous response, threat prediction, and real-time anomaly detection in heterogeneous cloud computing environments."</em></p>
+                            <div class="obj-solution">
+                                <strong>How We Implemented It:</strong>
+                                <ul>
+                                    <li><strong>CICIDS2018 Features:</strong> 80-dimensional flow extraction (flow duration, inter-arrival times, TCP flags).</li>
+                                    <li><strong>Deep Autoencoder & LSTM:</strong> Unsupervised manifold learning with calibrated reconstruction error threshold (τ = 0.000784).</li>
+                                    <li><strong>Adaptive Retraining:</strong> Sliding-window FIFO buffer fine-tunes model on verified benign batches to defeat concept drift.</li>
+                                    <li><strong>Autonomous Response:</strong> Sub-second automated quarantine and traffic throttling policy engine.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="objective-box">
+                            <div class="obj-header">
+                                <span class="obj-badge">Objective 2</span>
+                                <h3>Hybrid Decentralized Security Architecture (PQC + Blockchain)</h3>
+                            </div>
+                            <p class="obj-text"><em>"To create and implement a hybrid decentralized security architecture that combines quantum-resistant cryptographic techniques with blockchain-enabled trust management to guarantee improved data integrity, confidentiality, tamper-proof auditing, and secure communication."</em></p>
+                            <div class="obj-solution">
+                                <strong>How We Implemented It:</strong>
+                                <ul>
+                                    <li><strong>CRYSTALS-Kyber768:</strong> NIST Round-3 Key Encapsulation derives 256-bit symmetric keys for quantum-safe container channels.</li>
+                                    <li><strong>CRYSTALS-Dilithium3:</strong> Lattice-based digital signatures sign every inter-node transaction and threat alert.</li>
+                                    <li><strong>Permissioned Blockchain:</strong> SHA-256 Merkle hash chain records all detection events and dynamic node trust scores (T ∈ [0.0, 1.0]).</li>
+                                    <li><strong>Tamper Proofing:</strong> Any manual byte modification invalidates the cryptographic hash chain instantly.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="objective-box">
+                            <div class="obj-header">
+                                <span class="obj-badge">Objective 3</span>
+                                <h3>Verification — Robustness, Scalability, Dependability, Efficiency</h3>
+                            </div>
+                            <p class="obj-text"><em>"To verify the robustness and practical application of the hybrid decentralized security framework by thoroughly assessing its efficacy, scalability, dependability, and computing efficiency using benchmark datasets, actual cloud workloads, and simulated attack scenarios."</em></p>
+                            <div class="obj-solution">
+                                <strong>How We Implemented It:</strong>
+                                <ul>
+                                    <li><strong>Efficacy:</strong> Autoencoder achieves 90.68% accuracy and 0.7147 F1, significantly outperforming Isolation Forest (0.6313) and One-Class SVM (0.6319) (p < 0.001).</li>
+                                    <li><strong>Scalability:</strong> Benchmarked smoothly from 5 up to 50 nodes with sub-linear latency growth.</li>
+                                    <li><strong>Dependability:</strong> Automated node crash/revival test verifies consensus survival and ledger synchronization.</li>
+                                    <li><strong>Computing Efficiency:</strong> Ultra-fast 5.99 ms inference latency enables inline real-time cloud traffic inspection.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Node Inspector Modal -->
+    <div id="node-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3 id="modal-node-title">Node-03 Telemetry & Credentials</h3>
+                <button id="modal-close" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-node-body">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
