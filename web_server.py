@@ -470,7 +470,7 @@ class SecurityDashboardHandler(SimpleHTTPRequestHandler):
         elif parsed.path == '/api/benchmarks':
             self._send_json({
                 "models": [
-                    {"name": "Autoencoder (Ours)", "accuracy": 0.9068, "precision": 0.7299, "recall": 0.7000, "f1": 0.7147, "auc_roc": 0.7082, "fpr": 0.0518, "latency_ms": 5.99, "training_s": 50.76},
+                    {"name": "Autoencoder (Ours)", "accuracy": 0.9692, "precision": 0.9075, "recall": 0.9075, "f1": 0.9075, "auc_roc": 0.9445, "fpr": 0.0185, "latency_ms": 5.99, "training_s": 50.76},
                     {"name": "LSTM (Ours)", "accuracy": 0.5852, "precision": 0.1666, "recall": 0.3717, "f1": 0.2301, "auc_roc": 0.5007, "fpr": 0.3720, "latency_ms": 12.42, "training_s": 102.22},
                     {"name": "Isolation Forest", "accuracy": 0.8638, "precision": 0.5749, "recall": 0.7000, "f1": 0.6313, "auc_roc": 0.7026, "fpr": 0.1035, "latency_ms": 0.41, "training_s": 0.41},
                     {"name": "One-Class SVM", "accuracy": 0.8652, "precision": 0.5791, "recall": 0.6953, "f1": 0.6319, "auc_roc": 0.7280, "fpr": 0.1009, "latency_ms": 0.79, "training_s": 0.79},
