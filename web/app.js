@@ -133,6 +133,11 @@ class CloudSecuritySimulator {
         this.nodeModal.addEventListener('click', (e) => {
             if (e.target === this.nodeModal) this.nodeModal.classList.add('hidden');
         });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !this.nodeModal.classList.contains('hidden')) {
+                this.nodeModal.classList.add('hidden');
+            }
+        });
     }
 
     updateTargetDropdown() {

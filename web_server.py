@@ -477,6 +477,9 @@ class SecurityDashboardHandler(SimpleHTTPRequestHandler):
                     {"name": "CNN-1D Baseline", "accuracy": 0.7695, "precision": 0.1665, "recall": 0.0955, "f1": 0.1214, "auc_roc": 0.5070, "fpr": 0.0957, "latency_ms": 4.10, "training_s": 15.43}
                 ]
             })
+        elif parsed.path == '/favicon.ico':
+            self.send_response(204)
+            self.end_headers()
         else:
             super().do_GET()
 
