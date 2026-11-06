@@ -63,3 +63,16 @@ docs/
 *.md
 !README.md
 !cloud_deployment_guide/README.md
+.venv/
+node_modules/
+.next/
+.cache/
+*.pem
+*.key
+id_rsa
+id_ed25519
+.opencode/
+.huggingface/
+# hardened 2026-11-07 (vaibhav7087 backup)
+.env.production
+.env.local
